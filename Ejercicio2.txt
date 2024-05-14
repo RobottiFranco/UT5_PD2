@@ -1,0 +1,19 @@
+Pseudocodigo:
+COM
+Tipo Lista buscar(Tipo String s)
+    nodoActual <- this
+    unHijo <- nulo
+    Para cada (car en s)
+        unHijo <- nodoActual.hijos[car]
+        Si (unHijo == nulo)
+            devolver nulo
+        SiNo
+            nodoActual <- unHijo
+        FinSi
+    Fin Para Cada
+
+    Si (nodoActual.esPalabra)
+        devolver indices
+    FinSi
+    devolver nulo
+FIN

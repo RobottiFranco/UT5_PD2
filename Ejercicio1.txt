@@ -1,0 +1,75 @@
+Para construir un trie para el alfabeto construimos un array de nodos enlazados. Cada nodo apunta hacia otro array. Cada array tiene 26 espacio, uno por cada
+letra del alfabeto. De esta forma el trie se comporta como un arbol general el cual tiene codificados sus hijos en un array de nodos.
+El arbol solo almacena a la raiz, que no identifica ningun caracter.
+
+
+Lenguaje natural:
+
+El algortimo debe recibir un texto, identificar y separar sus palabras segun los espacios y para cada palabra, insertar cada una de sus letras en el trie si no se encontraran
+o seguir el camino del mismo. Al llegar al final de la palabra, si la misma no se encontraba como tal, debe indicarla como palabra y en cualquier caso anadir su indice como 
+posicion a esta.
+
+Precondiciones nodo:
+- Se cuenta con un elemento no nulo
+- Se cuenta con un texto
+
+Precondiciones arbol:
+- Se cuenta con un arbol no nulo
+- Se cuenta con un texto
+
+Postcondiciones:
+- El texto ha sido insertado e indexado por palabra dentro del subarbol
+
+
+
+Pseudocodigo:
+
+Nodo:
+
+Comienzo
+const cantidadDeCaracteresPorPagina
+insertarPalabras(Tipo String texto)
+    Tipo StringArray textoSeparado <- texto.separar(" ")
+    indicePalabra <-0
+    Para cada (palabra en textoSeparado)
+        nodo <- this
+        c <- 0
+        Mientras (c < palabra.longitud)
+            indice <- unaPalabra[c].toInt
+            Si (nodo.hijos[indice] = nulo)
+                nodo.hijo[indice] <- Nuevo Tipo NodoTrie
+            FinSi
+            nodo <- nodo.hijos[indice]
+        FinMientras
+        nodo.esPalabra <- Verdadero
+        nodo.indices.insertar((indicePalabra)mod(cantidadDeCaracteresPorPagina))
+        indicePalabra <- indicePalabra + palabra.longitud
+    Fin Para Cada
+
+Fin
+
+Arbol:
+
+Com
+
+insertarPalabras(Tipo String texto)
+    Si (raiz = nulo)
+        raiz <- Nuevo Tipo NodoTrie
+    FinSi
+    raiz.insertarPalabras(texto)
+
+Fin
+
+Analisis del tiempo de ejecucion:
+
+Dado que la ubicacion de los nodos ya esta mapeada con un array, el encontrar el siguiente nodo al que avanzar no consume un tiempo dependiende de la longitud del alfabeto.
+El algoritmo cuenta con un bucle de tipo for que se ejecuta tantas veces como palabras haya en el texto y con un bucle anidado while que se ejecuta tantas veces como caracteres
+tenga cada palabra. El tiempo de ejecucion de las instrucciones dentro de esos es de tiempo constante. Dado que el resultado de la productoria entre la longitud de las palabras
+y su cantidad es exactamente la longitud del texto, el orden del tiempo de ejecucion del algoritmo es de O(N) con N la longitud total del texto.
+
+
+
+Dado que la implementacion es con un array, el programa realiza tantas comparaciones como letras tenga la palabra.
+El trie resultante tien altura 12 y su tamano es de 46
+
+
